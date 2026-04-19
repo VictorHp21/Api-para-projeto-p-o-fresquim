@@ -1,6 +1,9 @@
 package com.pao_fresquim.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "Clientes")
@@ -21,6 +24,9 @@ public class Cliente {
     // teste
 
     //relacionamentos:
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Venda> vendas;
 
 
     public Cliente(){}
@@ -68,7 +74,17 @@ public class Cliente {
         return saldo_devedor;
     }
 
-   // setters
+    // get e set das vendas
+
+    public List<Venda> getVendas() {
+        return vendas;
+    }
+
+    public void setVendas(List<Venda> vendas) {
+        this.vendas = vendas;
+    }
+
+    // setters
 
     public void setNome(String nome) {
         this.nome = nome;

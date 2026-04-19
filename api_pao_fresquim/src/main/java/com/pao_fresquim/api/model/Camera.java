@@ -2,6 +2,8 @@ package com.pao_fresquim.api.model;
 
 
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,7 +17,7 @@ public class Camera {
     private String localizacao;
 
     @ManyToMany(mappedBy = "cameras")
-    private List<Funcionario> funcionarios;
+    private List<Funcionario> funcionarios = new ArrayList<>();
 
     public Camera() {}
 

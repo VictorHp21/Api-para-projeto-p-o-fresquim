@@ -1,8 +1,11 @@
 package com.pao_fresquim.api.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Vendas")
@@ -23,17 +26,31 @@ public class Venda {
 
 
     // relacionamentos:
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "funcionario_id")
+    private Funcionario funcionario;
+
+
+
+    @OneToMany(mappedBy = "Venda", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<ItemVenda> itens = new ArrayList<>();
 
 
     public Venda(){}
 
-    public Venda(LocalDateTime data_venda, Double valor_total, FormaPagamento formaPagamento, Boolean nf_emitida) {
+    public Venda(LocalDateTime data_venda, Double valor_total, FormaPagamento formaPagamento, Boolean nf_emitida, Cliente cliente, List<ItemVenda> itens) {
         this.data_venda = data_venda;
         this.valor_total = valor_total;
         this.formaPagamento = formaPagamento;
         this.nf_emitida = nf_emitida;
+        this.cliente = cliente;
+        this.itens = itens;
     }
-
 
     // getters
 

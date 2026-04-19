@@ -1,6 +1,9 @@
 package com.pao_fresquim.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "Produtos")
@@ -17,7 +20,9 @@ public class Produto {
 
     // relacionamentos:
 
-
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<ItemVenda> itensDaVenda;
 
     public Produto(){}
 

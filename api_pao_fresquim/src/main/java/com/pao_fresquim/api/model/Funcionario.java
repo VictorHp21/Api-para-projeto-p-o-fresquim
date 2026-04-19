@@ -1,11 +1,14 @@
 package com.pao_fresquim.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "Funcionarios")
@@ -29,6 +32,18 @@ public class Funcionario {
 
 
     //relacionamentos:
+    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Venda> vendas;
+
+    // cria tabela intermedíaria para relação manyTomany
+    @ManyToMany
+    @JoinTable(
+            name = "funcionario_camera",
+            joinColumns = @JoinColumn(name = "funcionario_id"),
+            inverseJoinColumns = @JoinColumn(name = "camera_id")
+    )
+    private List<Camera> cameras = new ArrayList<>();
 
 
     public Funcionario(){}
@@ -114,5 +129,25 @@ public class Funcionario {
 
     public void setAtestadoMedico(byte[] atestadoMedico) {
         this.atestadoMedico = atestadoMedico;
+    }
+
+
+    // vendas e cameras
+
+
+    public List<Venda> getVendas() {
+        return vendas;
+    }
+
+    public void setVendas(List<Venda> vendas) {
+        this.vendas = vendas;
+    }
+
+    public List<Camera> getCameras() {
+        return cameras;
+    }
+
+    public void setCameras(List<Camera> cameras) {
+        this.cameras = cameras;
     }
 }
