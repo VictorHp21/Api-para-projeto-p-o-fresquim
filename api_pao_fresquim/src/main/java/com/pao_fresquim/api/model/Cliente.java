@@ -18,6 +18,7 @@ public class Cliente {
     private Boolean status_serasa;
     private Float saldo_devedor;
 
+    // teste
 
     //relacionamentos:
 
