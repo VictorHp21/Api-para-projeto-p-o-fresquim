@@ -30,6 +30,11 @@ public class Funcionario {
     @Lob
     private byte[] atestadoMedico;
 
+    private String nomeArquivo;
+    private String tipoArquivo;
+
+    // ---- //
+
 
     //relacionamentos:
     @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL)
@@ -95,6 +100,13 @@ public class Funcionario {
         return atestadoMedico;
     }
 
+    public String getNomeArquivo() {
+        return nomeArquivo;
+    }
+
+    public String getTipoArquivo() {
+        return tipoArquivo;
+    }
 
     // setters
 
@@ -123,6 +135,13 @@ public class Funcionario {
         this.licensas = licensas;
     }
 
+    public void setNomeArquivo(String nomeArquivo) {
+        this.nomeArquivo = nomeArquivo;
+    }
+
+    public void setTipoArquivo(String tipoArquivo) {
+        this.tipoArquivo = tipoArquivo;
+    }
 
     // a sofrer alterações
     // desenvolver forma backend para retorno dos bytes do arquivo para acesso no front
@@ -150,4 +169,8 @@ public class Funcionario {
     public void setCameras(List<Camera> cameras) {
         this.cameras = cameras;
     }
+
+
+
+
 }

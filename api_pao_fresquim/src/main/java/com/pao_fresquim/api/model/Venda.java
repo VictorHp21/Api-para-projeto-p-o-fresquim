@@ -75,6 +75,10 @@ public class Venda {
         return nf_emitida;
     }
 
+    public List<ItemVenda> getItens() {
+        return itens;
+    }
+
     // setters
 
 
