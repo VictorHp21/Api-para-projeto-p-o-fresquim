@@ -19,6 +19,16 @@ public class Camera {
     @ManyToMany(mappedBy = "cameras")
     private List<Funcionario> funcionarios = new ArrayList<>();
 
+   /* @ManyToMany
+    @JoinTable(
+            name = "funcionario_camera",
+            joinColumns = @JoinColumn(name = "funcionario_id"),
+            inverseJoinColumns = @JoinColumn(name = "camera_id")
+    )
+    private List<Camera> cameras; */
+
+
+
     public Camera() {}
 
 

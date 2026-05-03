@@ -4,11 +4,13 @@ import com.pao_fresquim.api.Repositories.ProdutoRepository;
 import com.pao_fresquim.api.model.Funcionario;
 import com.pao_fresquim.api.model.Produto;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ProdutoService {
 
     private final ProdutoRepository repository;
@@ -26,8 +28,27 @@ public class ProdutoService {
         return repository.findById(id);
     }
 
-    public Produto cadastrarCliente(Produto produto){
+    public Produto cadastrarProduto(Produto produto){
         return  repository.save(produto);
+    }
+
+    public boolean excluirProduto(Long id){
+        if(repository.existsById(id)){
+            repository.deleteById(id);
+            return true;
+        }
+
+        return false;
+    }
+
+
+    public boolean excluirFuncionario(Long id){
+        if(repository.existsById(id)){
+            repository.deleteById(id);
+            return true;
+        }
+
+        return false;
     }
 
     // metodo atualizar preço

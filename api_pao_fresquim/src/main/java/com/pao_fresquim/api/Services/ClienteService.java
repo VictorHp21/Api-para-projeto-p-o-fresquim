@@ -2,10 +2,12 @@ package com.pao_fresquim.api.Services;
 
 import com.pao_fresquim.api.Repositories.ClienteRepository;
 import com.pao_fresquim.api.model.Cliente;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class ClienteService {
 
     private final ClienteRepository repository;
